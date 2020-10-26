@@ -1,4 +1,4 @@
-function varout = read_hvarsa(varname,xtiles,ytiles)
+function [varout,t] = read_hvarsa(varname,xtiles,ytiles)
 %%READ_HVARSA reads HYCOM's vars for the ATLc0.02 simulations 
 % VAROUT = READ_HVARSA(VARNAME,XTILES,YTILES) reads HYCOM variable 
 % VARNAME on select tiles XTILES [xstart xend], YILES [ystart yend]
@@ -11,8 +11,6 @@ function varout = read_hvarsa(varname,xtiles,ytiles)
 % 'srfhgt'   % sea surface height 
 % 
 % Created: October 25, 2020 by M. Solano 
-
-clc; close all; 
 
 % Format 
 IEEE = 'ieee-be';
@@ -32,7 +30,7 @@ numfiles = blki*blkj;
 runnumstr = sprintf('%3.3d',runnum);
 
 % Directories
-fprintf('\nReading HYCOM grid (Atlc_0.02; expt_04.3\n')
+fprintf('\nReading HYCOM vars (Atlc_0.02; expt_04.3)\n')
 fprintf('Input directory: %s\n',dirin)
 fprintf('Tiles in x-direction = %d\n',blki)
 fprintf('Tiles in y-direction = %d\n',blkj)

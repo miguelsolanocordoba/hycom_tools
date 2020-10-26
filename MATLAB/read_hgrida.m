@@ -15,8 +15,6 @@ function [lon,lat,depth] = read_hgrida(xtiles,ytiles)
 % 
 % Created: October 25, 2020 by M. Solano 
 
-clc; close all; 
-
 % Format 
 IEEE = 'ieee-be';
 addpath /data/msolano/Matlab
@@ -127,7 +125,7 @@ for i = 1:blki
    end
 end
 
-save('/data/msolano/atlantic_coord.mat','lon','lat','depth');
+%save('/data/msolano/atlantic_coord.mat','lon','lat','depth');
 
 
 %% Save output to hycom (structure) 
