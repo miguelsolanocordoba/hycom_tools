@@ -13,26 +13,22 @@
 #time: time a simple command or give resource usage
 
 # run number
-EXPT='21'
-num='6'
+EXPT='04'
+num='3'
 RNNM=$EXPT$num
-LISN=$RNNM'_archv.2019.lis'
+LISN=$RNNM'_archs.0019.lis'
 echo $LISN
 
-#range i:1-60, j:1-35
-#jblks=1    # Surface stress/heat (i=1-60; j=1:35)
-#jblke=35
-#iblks=1
-#iblke=60
-jblks=15
-jblke=19
-iblks=23
-iblke=25
-stp=5
+#range i:1-52, j:1-38
+iblks=1
+iblke=52
+jblks=1
+jblke=38
+stp=19
 
 # path where the simulation is done
-PTHNM=$WORKDIR'/hycom/GLBc0.04/expt_'$EXPT'.'$num'/'
-PTHHO=$HOME'/hycom/GLBc0.04/expt_'$EXPT'.'$num'/'
+PTHNM='/p/work/tfohycom/hycom/ATLc0.02/expt_'$EXPT'.'$num'/'
+PTHHO=$HOME'/hycom/ATLc0.02/expt_'$EXPT'.'$num'/'
 echo $PTHNM
 echo $PTHHO
 
@@ -62,13 +58,13 @@ for j in $(seq $jblks $stp $jblke ); do
   echo "#PBS -m bea"                      >> ${PTHHO}pbsXTS_j${j}_${i}a
   echo "#PBS -A ONRDC45592567"            >> ${PTHHO}pbsXTS_j${j}_${i}a
   echo "#PBS -S /bin/bash"                >> ${PTHHO}pbsXTS_j${j}_${i}a
-  echo "#PBS -l walltime=03:00:00"        >> ${PTHHO}pbsXTS_j${j}_${i}a
+  echo "#PBS -l walltime=05:00:00"        >> ${PTHHO}pbsXTS_j${j}_${i}a
   echo "#PBS -q standard"                    >> ${PTHHO}pbsXTS_j${j}_${i}a
-  echo "#PBS -l select=1:ncpus=1"         >> ${PTHHO}pbsXTS_j${j}_${i}a
+  echo "#PBS -l select=1:ncpus=44:mpiprocs=1"  >> ${PTHHO}pbsXTS_j${j}_${i}a
   echo "# Change to the specified directory" >> ${PTHHO}pbsXTS_j${j}_${i}a
-  echo "cd $WORKDIR/hycom/GLBc0.04/expt_${EXPT}.${num}" >> ${PTHHO}pbsXTS_j${j}_${i}a
+  echo "cd /p/work/tfohycom/hycom/ATLc0.02/expt_${EXPT}.${num}" >> ${PTHHO}pbsXTS_j${j}_${i}a
   echo "# Execute the serial executable on 1 core"  >> ${PTHHO}pbsXTS_j${j}_${i}a
-  echo "aprun -b -n 1 ./extract_vars_TS_c004_v12.x  < ./extract_${RNNM}_${j}_${i}a.in > ./extract_${RNNM}_${j}_${i}a.out" >> ${PTHHO}pbsXTS_j${j}_${i}a
+  echo "aprun -b -n 1 ./extract_vars2D.x  < ./extract_${RNNM}_${j}_${i}a.in > ./extract_${RNNM}_${j}_${i}a.out" >> ${PTHHO}pbsXTS_j${j}_${i}a
 
   qsub ${PTHHO}pbsXTS_j${j}_${i}a
 
