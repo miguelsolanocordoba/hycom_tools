@@ -56,7 +56,7 @@ for j in $(seq $jblks $stp $jblke ); do
   echo "#PBS -e XTSj${j}_${i}.err"         >> ${PTHHO}pbsXTS_j${j}_${i}a
   echo "#PBS -M miguel.solano@usm.edu" >> ${PTHHO}pbsXTS_j${j}_${i}a
   echo "#PBS -m bea"                      >> ${PTHHO}pbsXTS_j${j}_${i}a
-  echo "#PBS -A ONRDC45592567"            >> ${PTHHO}pbsXTS_j${j}_${i}a
+  echo "#PBS -A ONRDC########"            >> ${PTHHO}pbsXTS_j${j}_${i}a
   echo "#PBS -S /bin/bash"                >> ${PTHHO}pbsXTS_j${j}_${i}a
   echo "#PBS -l walltime=05:00:00"        >> ${PTHHO}pbsXTS_j${j}_${i}a
   echo "#PBS -q standard"                    >> ${PTHHO}pbsXTS_j${j}_${i}a

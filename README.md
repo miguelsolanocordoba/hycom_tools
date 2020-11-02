@@ -57,6 +57,7 @@ To compile extract_vars2D.f, type:
 
  
 4. Modify the run script run_extract_vars.com to submit job.
+** Modify line 59 with project number to allocate HPC comp time. 
 
 
 5. Run the code.
