@@ -52,7 +52,7 @@ FCFLAGS = -traceback -xHost -O3 -fp-model precise -ftz -align array64byte -conve
 rotv1: $(PROGRAM1)
 	$(FC) $(CPPFLAGS) $(LDFLAGS) -lfftw3 -o $(EXECNAME1) $(PROGRAM1) $(FCFLAGS)
 rotv2: $(PROGRAM2)
-	$(FC) $(CPPFLAGS) $(LDFLAGS) -lfftw3 -o $(EXECNAME2) $(PROGRAM2) $(FCFLAGS)
+	$(FC) $(CPPFLAGS) $(LDFLAGS) -lfftw3 -o $(EXECNAME1) $(PROGRAM1) $(FCFLAGS)
 all: rotv1 rotv2
 clean: 
 	rm $(EXECNAME1)
