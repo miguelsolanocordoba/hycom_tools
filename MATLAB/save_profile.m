@@ -1,15 +1,5 @@
 clear; clc; close all
-%SAVE_PROFILE Reads HYCOM output (.BinF) and saves profile (.mat)
-% This script can be used to read HYCOM output saved in binary 
-% format (.BinF) and saves a vertical profile in Matlab format 
-% (.mat) of the following variables:
-%
-% lat = latitude 
-% lon = longitude 
-% depth = bathymetry 
-% uiso = Eastward baroclinic velocity 
-% viso 
-% 
+%%NISKINE_SAVEPROF saves HYCOM profiles for use with InternalModes
 % 
 % Created: June 22, 2020 by M. Solano 
 
@@ -20,19 +10,27 @@ addpath /data/msolano/Matlab
 %% Experiment and tile number 
 % loc1 > runnum=221;  blki=27; blkj=45; a=100; b=75;
 % loc2 > runnum=190;  blki=15; blkj=25; a=40;  b=40;
-% loc2 > runnum=190;  blki=15; blkj=25; a=40;  b=40;
+% loc3 > runnum=221;  blki=27; blkj=45; a=18;  b=54;
+% loc4 > runnum=221;  blki=27; blkj=45; a=65;  b=73;
+% loc5 > runnum=190;  blki=15; blkj=25; a=40;  b=40; (30 day)
+% loc6 > runnum=190;  blki=19; blkj=41; a=40;  b=40; 
 
 runnum = 190;
 runnumstr = num2str(runnum);
-blki=15;
-blkj=25;
+blki=18;
+blkj=41;
 
 % Output point 
-a = 40; b = 40; 
+a = 169; b = 147; 
 
 % Directories
-%dirin = '/data2/mbui/for_keshav/tiles/'; % loc1
-dirin = '/data2/msolano/forEmanuel/hycom/GLBc0.04/expt_19.0/'; 
+switch runnum
+case 190  % loc 2/5
+    dirin = '/data2/msolano/hycom/GLBc0.04/expt_19.0/'; 
+case 221  % loc 1/3/4
+    dirin = '/data2/mbui/for_keshav/tiles/'; 
+end
+
 dirout = '/data/msolano/forOladeji/';
 saveflag = 0;
 
@@ -69,6 +67,7 @@ nyb=ny+nbf*2;
 
 lenrec2 = nxb*nyb+2;
 t = datenum(2016,9,1):datenum(0,0,0,1,0,0):datenum(2016,9,15);
+%t = datenum(2016,9,1):datenum(0,0,0,1,0,0):datenum(2016,9,15);
 nt = numel(t); 
 
 % Load grid
@@ -89,6 +88,9 @@ lat1(:,:) = permute(reshape(latdata(2:end-1),[nxb nyb]),[2 1]);
 fclose(fiddep);
 fclose(fidlon);
 fclose(fidlat);
+
+lon1(a,b) 
+lat1(a,b)
 
 %% Read variables
 % Open files
@@ -182,9 +184,9 @@ fprintf('\nSaving profile...\n')
 profile = struct('latitude',lat,'longitude',lon,'depth',depth,...
                  'uiso',uiso,'viso',viso,'ufilt',ufilt,'vfilt',vfilt,...
 		 'ufiltint',ufiltint,'vfiltint',vfiltint,'rho',rho,...
-		 'zc',zc,'zf_mean',zf_mean,...
+		 'zc',zc,'zf',zf,'zf_mean',zf_mean,...
                  'zc_mean',zc_mean,'rho_mean',rho_mean)
 
-save([dirout 'profile_loc2.mat'],'profile','-v7.3');
+save([dirout 'profile_locx.mat'],'profile','-v7.3');
 
 fprintf('SUCCESS!!!\nProfile saved to: %s\n',dirout)
