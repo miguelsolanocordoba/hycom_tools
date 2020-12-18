@@ -31,7 +31,7 @@ switch model
   case 'ATLc0.02'
      nx=129; ny=194; nz=41; nt=730;
   otherwise 
-    disp('Error: MODEL must be either GLBc0.04 or ATLc0.02'))
+    disp('Error: MODEL must be either GLBc0.04 or ATLc0.02')
 end 
 
 % Dimensions (continued)
