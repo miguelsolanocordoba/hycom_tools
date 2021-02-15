@@ -1,4 +1,4 @@
-function hycom = read_hycom(model,runnum,blki,blkj)
+function hycom = read_hycom(model,runnum,iblk,jblk)
 %%READ_HYCOM reads in HYCOM's tiled output.
 %  HYCOM = READ_HYCOM(MODEL,RUNNUM,BLKI,BLKJ) reads hycom tiled output
 %  in binary format (.BinF). HYCOM simulations are stored according to:
@@ -40,16 +40,17 @@ nxb=nx+nbf*2;
 nyb=ny+nbf*2;
 
 lenrec2 = nxb*nyb+2;
-t = datenum(2016,9,1):datenum(0,0,0,1,0,0):datenum(2016,9,15);
-nt = numel(t); 
+%t = datenum(2016,9,1):datenum(0,0,0,1,0,0):datenum(2016,9,15);
+t = datenum(2016,9,1):datenum(0,0,0,1,0,0):datenum(2016,10,1);
+nt = numel(t)-1; 
 
 %% Experiment and tile number 
-% North Atlantic > runnum=221;  blki=27; blkj=45;
-% South Pacific > runnum=190;  blki=15; blkj=25; 
-% Amazon (1) > runnum=190;  blki=19; blkj=40; 
-% Amazon (2) > runnum=190;  blki=19; blkj=41; 
-% Amazon (3) > runnum=190;  blki=18; blkj=40; 
-% Amazon (4) > runnum=190;  blki=18; blkj=41; 
+% North Atlantic > runnum=221; jblk=27; iblk=45;
+% South Pacific > runnum=190;  jblk=15; iblk=25; 
+% Amazon (1) > runnum=190;     jblk=19; iblk=40; 
+% Amazon (2) > runnum=190;     jblk=19; iblk=41; 
+% Amazon (3) > runnum=190;     jblk=18; iblk=40; 
+% Amazon (4) > runnum=190;     jblk=18; iblk=41; 
 
 % Directories
 expt = num2str(runnum); 
@@ -58,30 +59,30 @@ runnumstr = num2str(runnum);
 
 fprintf('\nReading HYCOM files (read_hycom)\n')
 fprintf('Input directory: %s\n',dirin)
-fprintf('iTile = %d\n',blki)
-fprintf('jTile = %d\n',blkj)
+fprintf('iTile = %d\n',iblk)
+fprintf('jTile = %d\n',jblk)
 
 % Grid file data
 depfile = [dirin 'griddata/depth_' num2str(runnum) '_blk_' ...
-           num2str(blki) '_' num2str(blkj) '.BinF'];
+           num2str(jblk) '_' num2str(iblk) '.BinF'];
 lonfile = [dirin 'griddata/plon_' num2str(runnum) '_blk_' ...
-           num2str(blki) '_' num2str(blkj) '.BinF'];
+           num2str(jblk) '_' num2str(iblk) '.BinF'];
 latfile = [dirin 'griddata/plat_' num2str(runnum) '_blk_' ...
-           num2str(blki) '_' num2str(blkj) '.BinF'];
+           num2str(jblk) '_' num2str(iblk) '.BinF'];
 
 % Variables 
 fname1 = [dirin 'u_iso/u_' num2str(runnum) '_blk_' ...
-           num2str(blki) '_' num2str(blkj) '.BinF'];
+           num2str(jblk) '_' num2str(iblk) '.BinF'];
 fname2 = [dirin 'v_iso/v_' num2str(runnum) '_blk_' ...
-           num2str(blki) '_' num2str(blkj) '.BinF'];
+           num2str(jblk) '_' num2str(iblk) '.BinF'];
 fname3 = [dirin 'thknss/thknss_' num2str(runnum) '_blk_' ...
-           num2str(blki) '_' num2str(blkj) '.BinF'];
+           num2str(jblk) '_' num2str(iblk) '.BinF'];
 fname4 = [dirin 'sig/sig_' num2str(runnum) '_blk_' ...
-           num2str(blki) '_' num2str(blkj) '.BinF'];
+           num2str(jblk) '_' num2str(iblk) '.BinF'];
 %fname5 = [dirin 'temp/T_' num2str(runnum) '_blk_' ...
-%           num2str(blki) '_' num2str(blkj) '.BinF'];
+%           num2str(jblk) '_' num2str(iblk) '.BinF'];
 %fname6 = [dirin 'sal/S_' num2str(runnum) '_blk_' ...
-%           num2str(blki) '_' num2str(blkj) '.BinF'];
+%           num2str(jblk) '_' num2str(iblk) '.BinF'];
 
 % Load grid
 fiddep = fopen(depfile,'r',IEEE);
