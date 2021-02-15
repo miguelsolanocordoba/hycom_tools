@@ -7,16 +7,11 @@ clear; close; clc;
 IEEE = 'ieee-be'; % binary format (big-endian)
 ieee='b';
 
-% use tflg=5, for M2 tides only
-% also change the scalefactor sclf
-RUNNM = '221'; 
-bandp = 'M2_JGAU/';      
-vernum = '_v12'; 
-tflg=5; 
-sclf=0.3; % M2 tides; FINISHED
+% Experiment
+RUNNM = '190'; 
 
 % Database
-dirbase = ['/data/mbui/projects/HYCOM_chunk/GLBc0.04/expt_' RUNNM(1:2) '.' RUNNM(3) '/']   
+dirbase = ['/data2/msolano/hycom/GLBc0.04/expt_' RUNNM(1:2) '.' RUNNM(3) '/']   
 
 % Dimensions
 nx=9000; ny=7055;
@@ -24,7 +19,7 @@ lenrec = nx*ny+2;
 idm=nx; jdm=ny; nz=41;
 
 % Open files
-dirin3 = [dirbase 'regional/'];
+dirin3 = [dirbase 'input/'];
 
 fnameg = 'regional.grid.a';
 fidg=fopen([dirin3 fnameg],'r',ieee);
@@ -44,13 +39,12 @@ fclose(fidd);
 
 %% plot bins boxes tiles
 stp = 4;
-figA4L
+figure;
 contour(plon(1:stp:end,1:stp:end),plat(1:stp:end,1:stp:end),depth(1:stp:end,1:stp:end),[0.1 0.1],'k-')
-holder
+hold on
 contour(plon(1:stp:end,1:stp:end),plat(1:stp:end,1:stp:end),depth(1:stp:end,1:stp:end),[2000 2000],'k-')
 
 blki=150, blkj=200; %explodes on shepard
-holder
 ntx = floor(idm/blki);
 nty = floor(jdm/blkj);
 
