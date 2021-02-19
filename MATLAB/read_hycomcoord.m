@@ -1,4 +1,4 @@
-function hycom = read_hycomcoord(model,runnum,blki,blkj)
+function hycom = read_hycomcoord(model,runnum,iblk,jblk)
 %%READ_HYCOM reads in HYCOM's tiled output (lon,lat,depth only).
 %  HYCOM = READ_HYCOMCOORD(MODEL,RUNNUM,BLKI,BLKJ) reads hycom tiled output
 %  in binary format (.BinF). HYCOM simulations are stored according to:
@@ -13,6 +13,10 @@ function hycom = read_hycomcoord(model,runnum,blki,blkj)
 %  hycom.lon   % longitude 
 %  hycom.lat   % latitude 
 %  hycom.h     % depth 
+% 
+% Example: 
+%
+% hycom = read_hycom('GLBc0.04',190,40,15)
 % 
 % Created: December 18, 2020 by M. Solano 
 
@@ -37,30 +41,30 @@ nyb=ny+nbf*2;
 lenrec2 = nxb*nyb+2;
 
 %% Experiment and tile number 
-% North Atlantic > runnum=221;  blki=27; blkj=45;
-% South Pacific > runnum=190;  blki=15; blkj=25; 
-% Amazon (1) > runnum=190;  blki=19; blkj=40; 
-% Amazon (2) > runnum=190;  blki=19; blkj=41; 
-% Amazon (3) > runnum=190;  blki=18; blkj=40; 
-% Amazon (4) > runnum=190;  blki=18; blkj=41; 
+% North Atlantic > runnum=221; jblk=27; iblk=45;
+% South Pacific > runnum=190;  jblk=15; iblk=25;
+% Amazon (1) > runnum=190;     jblk=19; iblk=40;
+% Amazon (2) > runnum=190;     jblk=19; iblk=41;
+% Amazon (3) > runnum=190;     jblk=18; iblk=40;
+% Amazon (4) > runnum=190;     jblk=18; iblk=41;
 
 % Directories
 expt = num2str(runnum); 
 dirin = ['/data2/msolano/hycom/' model '/expt_' expt(1:2) '.' expt(3) '/']; % 
 runnumstr = num2str(runnum);
 
-fprintf('\nReading HYCOM files (read_hycom)\n')
+fprintf('\nReading HYCOM grid tiles (read_hycomcoord)\n')
 fprintf('Input directory: %s\n',dirin)
-fprintf('iTile = %d\n',blki)
-fprintf('jTile = %d\n',blkj)
+fprintf('iTile = %d\n',iblk)
+fprintf('jTile = %d\n',jblk)
 
 % Grid file data
 depfile = [dirin 'griddata/depth_' num2str(runnum) '_blk_' ...
-           num2str(blki) '_' num2str(blkj) '.BinF'];
+           num2str(jblk) '_' num2str(iblk) '.BinF'];
 lonfile = [dirin 'griddata/plon_' num2str(runnum) '_blk_' ...
-           num2str(blki) '_' num2str(blkj) '.BinF'];
+           num2str(jblk) '_' num2str(iblk) '.BinF'];
 latfile = [dirin 'griddata/plat_' num2str(runnum) '_blk_' ...
-           num2str(blki) '_' num2str(blkj) '.BinF'];
+           num2str(jblk) '_' num2str(iblk) '.BinF'];
 
 % Load grid
 fiddep = fopen(depfile,'r',IEEE);

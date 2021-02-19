@@ -57,7 +57,7 @@ expt = num2str(runnum);
 dirin = ['/data2/msolano/hycom/' model '/expt_' expt(1:2) '.' expt(3) '/']; % 
 runnumstr = num2str(runnum);
 
-fprintf('\nReading HYCOM files (read_hycom)\n')
+fprintf('\nReading HYCOM tiles (read_hycom)\n')
 fprintf('Input directory: %s\n',dirin)
 fprintf('iTile = %d\n',iblk)
 fprintf('jTile = %d\n',jblk)
