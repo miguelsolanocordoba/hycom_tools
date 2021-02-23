@@ -52,19 +52,21 @@ lenrec2 = nxb*nyb+2;
 expt = num2str(runnum); 
 dirin = ['/data2/msolano/hycom/' model '/expt_' expt(1:2) '.' expt(3) '/']; % 
 runnumstr = num2str(runnum);
+iblkstr = sprintf('%.2d',iblk); 
+jblkstr = sprintf('%.2d',jblk); 
 
 fprintf('\nReading HYCOM grid tiles (read_hycomcoord)\n')
 fprintf('Input directory: %s\n',dirin)
-fprintf('iTile = %d\n',iblk)
-fprintf('jTile = %d\n',jblk)
+fprintf('iTile = %s\n',iblkstr)
+fprintf('jTile = %s\n',jblkstr)
 
 % Grid file data
 depfile = [dirin 'griddata/depth_' num2str(runnum) '_blk_' ...
-           num2str(jblk) '_' num2str(iblk) '.BinF'];
+           jblkstr '_' iblkstr '.BinF'];
 lonfile = [dirin 'griddata/plon_' num2str(runnum) '_blk_' ...
-           num2str(jblk) '_' num2str(iblk) '.BinF'];
+           jblkstr '_' iblkstr '.BinF'];
 latfile = [dirin 'griddata/plat_' num2str(runnum) '_blk_' ...
-           num2str(jblk) '_' num2str(iblk) '.BinF'];
+           jblkstr '_' iblkstr '.BinF'];
 
 % Load grid
 fiddep = fopen(depfile,'r',IEEE);

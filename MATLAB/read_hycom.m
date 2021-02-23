@@ -56,33 +56,35 @@ nt = numel(t)-1;
 expt = num2str(runnum); 
 dirin = ['/data2/msolano/hycom/' model '/expt_' expt(1:2) '.' expt(3) '/']; % 
 runnumstr = num2str(runnum);
+iblkstr = sprintf('%.2d',iblk); 
+jblkstr = sprintf('%.2d',jblk); 
 
 fprintf('\nReading HYCOM tiles (read_hycom)\n')
 fprintf('Input directory: %s\n',dirin)
-fprintf('iTile = %d\n',iblk)
-fprintf('jTile = %d\n',jblk)
+fprintf('iTile = %s\n',iblkstr)
+fprintf('jTile = %s\n',jblkstr)
 
 % Grid file data
 depfile = [dirin 'griddata/depth_' num2str(runnum) '_blk_' ...
-           num2str(jblk) '_' num2str(iblk) '.BinF'];
+           jblkstr '_' iblkstr '.BinF'];
 lonfile = [dirin 'griddata/plon_' num2str(runnum) '_blk_' ...
-           num2str(jblk) '_' num2str(iblk) '.BinF'];
+           jblkstr '_' iblkstr '.BinF'];
 latfile = [dirin 'griddata/plat_' num2str(runnum) '_blk_' ...
-           num2str(jblk) '_' num2str(iblk) '.BinF'];
+           jblkstr '_' iblkstr '.BinF'];
 
 % Variables 
 fname1 = [dirin 'u_iso/u_' num2str(runnum) '_blk_' ...
-           num2str(jblk) '_' num2str(iblk) '.BinF'];
+           jblkstr '_' iblkstr '.BinF'];
 fname2 = [dirin 'v_iso/v_' num2str(runnum) '_blk_' ...
-           num2str(jblk) '_' num2str(iblk) '.BinF'];
+           jblkstr '_' iblkstr '.BinF'];
 fname3 = [dirin 'thknss/thknss_' num2str(runnum) '_blk_' ...
-           num2str(jblk) '_' num2str(iblk) '.BinF'];
+           jblkstr '_' iblkstr '.BinF'];
 fname4 = [dirin 'sig/sig_' num2str(runnum) '_blk_' ...
-           num2str(jblk) '_' num2str(iblk) '.BinF'];
+           jblkstr '_' iblkstr '.BinF'];
 %fname5 = [dirin 'temp/T_' num2str(runnum) '_blk_' ...
-%           num2str(jblk) '_' num2str(iblk) '.BinF'];
+%           jblkstr '_' iblkstr '.BinF'];
 %fname6 = [dirin 'sal/S_' num2str(runnum) '_blk_' ...
-%           num2str(jblk) '_' num2str(iblk) '.BinF'];
+%           jblkstr '_' iblkstr '.BinF'];
 
 % Load grid
 fiddep = fopen(depfile,'r',IEEE);
