@@ -99,8 +99,11 @@ c 4D variables
 !      parameter(find3s=48,find3e=72,find4s=75,find4e=360)
 
       integer finds,finde
-!      parameter(finds=54, finde=63) !D2 [1.8-2.1]
-      parameter(finds=26, finde=33) !D1 [0.8667-1.1]
+!      parameter(finds=1, finde=25) !D0 [0.033 - 0.833]
+!      parameter(finds=26, finde=33) !D1 [0.8667 - 1.1]
+!      parameter(finds=54, finde=63) !D2 [1.8 - 2.1]
+!      parameter(finds=81, finde=360) !D3 [2.7 - 12]
+      parameter(finds=105, finde=135) !D [3.5 - 4.5]
 
 ! Spectral energy 
       real sef_cw1,sef_cw2,sef_cw3,sef_cw4
@@ -254,9 +257,9 @@ c 4D variables
 !!--------------------------------------------------------------------------
 !! OPEN 2D output files         
 !!--------------------------------------------------------------------------
-        outfile11='ke_rotspec/'//'D1_cw_'//runid//
+        outfile11='ke_rotspec/'//'D4_cw_'//runid//
      &'_'//numstr(jblk)//'_'//numstr(iblk)//'.BinF'
-        outfile12='ke_rotspec/'//'D1_ccw_'//runid//
+        outfile12='ke_rotspec/'//'D4_ccw_'//runid//
      &'_'//numstr(jblk)//'_'//numstr(iblk)//'.BinF'
 
         open(unit=111,file=outfile11,status='replace',
