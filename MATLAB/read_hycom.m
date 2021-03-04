@@ -34,6 +34,13 @@ switch model
     disp('Error: MODEL must be either GLBc0.04 or ATLc0.02')
 end 
 
+switch runnum
+  case 190
+     t = datenum(2019,5,21):datenum(0,0,0,1,0,0):datenum(2019,6,19,23,0,0);
+  case 221
+     t = datenum(2016,9,1):datenum(0,0,0,1,0,0):datenum(2016,10,1);
+end
+
 % Dimensions (continued)
 nbf = 3;  % halo/padding 
 nxb=nx+nbf*2;
