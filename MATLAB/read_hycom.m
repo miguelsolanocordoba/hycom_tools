@@ -38,18 +38,16 @@ switch runnum
   case 190
      t = datenum(2019,5,21):datenum(0,0,0,1,0,0):datenum(2019,6,19,23,0,0);
   case 221
-     t = datenum(2016,9,1):datenum(0,0,0,1,0,0):datenum(2016,10,1);
+     t = datenum(2016,9,1):datenum(0,0,0,1,0,0):datenum(2016,9,30,23,0,0);
 end
 
 % Dimensions (continued)
+nt = numel(t); 
 nbf = 3;  % halo/padding 
 nxb=nx+nbf*2;
 nyb=ny+nbf*2;
 
-lenrec2 = nxb*nyb+2;
-%t = datenum(2016,9,1):datenum(0,0,0,1,0,0):datenum(2016,9,15);
-t = datenum(2016,9,1):datenum(0,0,0,1,0,0):datenum(2016,10,1);
-nt = numel(t)-1; 
+lenrec2 = nxb*nyb+2; % record length
 
 %% Experiment and tile number 
 % North Atlantic > runnum=221; jblk=27; iblk=45;
