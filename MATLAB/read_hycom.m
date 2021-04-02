@@ -64,7 +64,7 @@ runnumstr = num2str(runnum);
 iblkstr = sprintf('%.2d',iblk); 
 jblkstr = sprintf('%.2d',jblk); 
 
-fprintf('\nReading HYCOM tiles (read_hycom)\n')
+fprintf('\nReading HYCOM variables: lon, lat, depth, dz, uiso, viso, rho\n')
 fprintf('Input directory: %s\n',dirin)
 fprintf('iTile = %s\n',iblkstr)
 fprintf('jTile = %s\n',jblkstr)
