@@ -55,8 +55,8 @@ runnumstr = num2str(runnum);
 iblkstr = sprintf('%.2d',iblk); 
 jblkstr = sprintf('%.2d',jblk); 
 
-fprintf('\nReading HYCOM grid tiles (read_hycomcoord)\n')
-fprintf('Input directory: %s\n',dirin)
+fprintf('\nReading HYCOM coordinates (lon,lat) and bathymetry (depth)\n')
+fprintf('Input directory: %s/%s\n',dirin,'griddata')
 fprintf('iTile = %s\n',iblkstr)
 fprintf('jTile = %s\n',jblkstr)
 
@@ -83,6 +83,7 @@ depth(:,:) = permute(reshape(depdata(2:end-1),[nxb nyb]),[2 1]);
 lon(:,:) = permute(reshape(londata(2:end-1),[nxb nyb]),[2 1]);
 lat(:,:) = permute(reshape(latdata(2:end-1),[nxb nyb]),[2 1]);
 
+fprintf('Done reading coordinates!\n')
 fclose(fiddep);
 fclose(fidlon);
 fclose(fidlat);

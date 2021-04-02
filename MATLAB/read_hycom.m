@@ -27,7 +27,7 @@ IEEE = 'ieee-be';
 % Dimensions (depends on model) 
 switch model 
   case 'GLBc0.04'
-     nx=150; ny=200; nz=41; nt=624;
+     nx=150; ny=200; nz=41;
   case 'ATLc0.02'
      nx=129; ny=194; nz=41; nt=730;
   otherwise 

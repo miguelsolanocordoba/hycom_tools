@@ -48,7 +48,7 @@ iblkstr = sprintf('%.2d',iblk);
 jblkstr = sprintf('%.2d',jblk);
 
 fprintf('\nReading HYCOM variable: %s\n',var)
-fprintf('Input directory: %s\n',dirin)
+fprintf('Input directory: %s/%s\n',dirin,var)
 fprintf('iTile = %s\n',iblkstr)
 fprintf('jTile = %s\n',jblkstr)
 
@@ -132,7 +132,7 @@ elseif vardim==2
 end
 
 
-fprintf('\nDone reading variables!\n')
+fprintf('Done reading variable!\n')
 fclose(fid);
 
 % Don't save halos (nbf) 
