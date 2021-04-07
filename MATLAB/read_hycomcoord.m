@@ -56,7 +56,7 @@ iblkstr = sprintf('%.2d',iblk);
 jblkstr = sprintf('%.2d',jblk); 
 
 fprintf('\nReading HYCOM coordinates (lon,lat) and bathymetry (depth)\n')
-fprintf('Input directory: %s/%s\n',dirin,'griddata')
+fprintf('Input directory: %s%s\n',dirin,'griddata')
 fprintf('iTile = %s\n',iblkstr)
 fprintf('jTile = %s\n',jblkstr)
 
