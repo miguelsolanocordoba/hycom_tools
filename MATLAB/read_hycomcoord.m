@@ -13,6 +13,8 @@ function hycom = read_hycomcoord(model,runnum,iblk,jblk)
 %  hycom.lon   % longitude 
 %  hycom.lat   % latitude 
 %  hycom.h     % depth 
+%  hycom.pscx  % delta_x 
+%  hycom.pscy  % delta_y
 % 
 % Example: 
 %
@@ -67,34 +69,48 @@ lonfile = [dirin 'griddata/plon_' num2str(runnum) '_blk_' ...
            jblkstr '_' iblkstr '.BinF'];
 latfile = [dirin 'griddata/plat_' num2str(runnum) '_blk_' ...
            jblkstr '_' iblkstr '.BinF'];
+pscxfile = [dirin 'griddata/pscx_' num2str(runnum) '_blk_' ...
+           jblkstr '_' iblkstr '.BinF'];
+pscyfile = [dirin 'griddata/pscy_' num2str(runnum) '_blk_' ...
+           jblkstr '_' iblkstr '.BinF'];
 
 % Load grid
 fiddep = fopen(depfile,'r',IEEE);
 fidlon = fopen(lonfile,'r',IEEE);
 fidlat = fopen(latfile,'r',IEEE);
+fidpscx = fopen(pscxfile,'r',IEEE);
+fidpscy = fopen(pscyfile,'r',IEEE);
 
 depdata = fread(fiddep,lenrec2,'single');
 londata = fread(fidlon,lenrec2,'single');
 latdata = fread(fidlat,lenrec2,'single');
+pscxdata = fread(fidpscx,lenrec2,'single');
+pscydata = fread(fidpscy,lenrec2,'single');
 
-lon = []; lat = []; depth = [];
+lon = []; lat = []; depth = []; pscx = []; pscy = [];
 
 depth(:,:) = permute(reshape(depdata(2:end-1),[nxb nyb]),[2 1]);
 lon(:,:) = permute(reshape(londata(2:end-1),[nxb nyb]),[2 1]);
 lat(:,:) = permute(reshape(latdata(2:end-1),[nxb nyb]),[2 1]);
+pscx(:,:) = permute(reshape(pscxdata(2:end-1),[nxb nyb]),[2 1]);
+pscy(:,:) = permute(reshape(pscydata(2:end-1),[nxb nyb]),[2 1]);
 
 fprintf('Done reading coordinates!\n')
 fclose(fiddep);
 fclose(fidlon);
 fclose(fidlat);
+fclose(fidpscx);
+fclose(fidpscy);
 
 % Don't save halos (nbf) 
 b = [nbf+1:nx+nbf]; 
 a = [nbf+1:ny+nbf]; 
 
 %% Save output to hycom (structure) 
-hycom.lon = lon(a,b);         % longitude 
-hycom.lat = lat(a,b);         % latitude 
-hycom.h   = depth(a,b);       % depth 
+hycom.lon  = lon(a,b);         % longitude 
+hycom.lat  = lat(a,b);         % latitude 
+hycom.h    = depth(a,b);       % depth 
+hycom.pscx = pscx(a,b);       % dx 
+hycom.pscy = pscy(a,b);       % dy 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EoF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

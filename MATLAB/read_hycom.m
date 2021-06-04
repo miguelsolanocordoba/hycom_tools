@@ -165,9 +165,15 @@ a = [nbf+1:ny+nbf];
 
 %% Save output to hycom (structure) 
 hycom.time = t;               % time (in datenum format)
+
+% 2D vars
 hycom.lon = lon(a,b);         % longitude 
 hycom.lat = lat(a,b);         % latitude 
 hycom.h   = depth(a,b);       % depth 
+%hycom.ubar= ubar(a,b);        % barotropic velocity (u) 
+%hycom.vbar= vbar(a,b);        % barotropic velocity (v)  
+
+% 3D vars
 hycom.dz  = thknss(a,b,:,:);  % layer thickness
 hycom.uiso = uiso(a,b,:,:);   % baroclinic velocity (u) 
 hycom.viso = viso(a,b,:,:);   % baroclinic velocity (v) 

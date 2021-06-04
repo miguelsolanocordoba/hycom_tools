@@ -86,8 +86,16 @@ fname = [dirin 'steric/steric_' num2str(runnum) '_blk_' ...
 fname = [dirin 'srfhgt/srfhgt_' num2str(runnum) '_blk_' ...
            jblkstr '_' iblkstr '.BinF'];
       vardim = 2; 
+   case 'ubar'
+fname = [dirin 'ubaro/ubaro_' num2str(runnum) '_blk_' ...
+           jblkstr '_' iblkstr '.BinF'];
+      vardim = 2; 
+   case 'vbar'
+fname = [dirin 'vbaro/vbaro_' num2str(runnum) '_blk_' ...
+           jblkstr '_' iblkstr '.BinF'];
+      vardim = 2; 
    otherwise 
-      disp('VAR must be: uiso, viso, sig, temp, salt, ssh, steric, srfhgt')
+      disp('VAR must be: uiso, viso, ubar, vbar, sig, temp, salt, ssh, steric, srfhgt')
       return
 end
 
