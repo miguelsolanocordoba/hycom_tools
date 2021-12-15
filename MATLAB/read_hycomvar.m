@@ -7,14 +7,15 @@ function hycom = read_hycomvar(model,runnum,iblk,jblk,var)
 % VAR can be:  uiso, viso, sig, temp, salt, ssh, steric or srfhgt. 
 % The variable and time vector are loaded into a structure format:
 %
-% hycom.uiso  % baroclinic velocity (u) 
-% hycom.viso  % baroclinic velocity (v) 
-% hycom.sig   % density  
-% hycom.temp  % temperature 
-% hycom.salt  % salinity
-% hycom.ubar  % eastward barotropic velocity
-% hycom.vbar  % northward barotropic velocity
-% hycom.ssh   % sea surface height 
+% hycom.uiso   % baroclinic velocity (u) 
+% hycom.viso   % baroclinic velocity (v) 
+% hycom.sig    % density  
+% hycom.temp   % temperature 
+% hycom.salt   % salinity
+% hycom.ubar   % eastward barotropic velocity
+% hycom.vbar   % northward barotropic velocity
+% hycom.ssh    % sea surface height 
+% hycom.steric % steric sea surface height 
 % 
 % hycom.time  % time (in datenum format)
 %
